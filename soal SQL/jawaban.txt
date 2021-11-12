@@ -1,0 +1,45 @@
+1. Membuat Database
+     - CREATE DATABASE myshop;                                                         
+     
+2. Membuat Table di Dalam Database
+     - USE myshop;                                                                     
+     - CREATE TABLE users (                                                            
+         id int NOT NULL AUTO_INCREMENT,                                              
+         name varchar(255),                  
+         email varchar(255),
+         password varchar(255),  
+         PRIMARY KEY (id)                               
+        );                         
+     - CREATE TABLE categories (                                                      
+         id int NOT NULL AUTO_INCREMENT,     
+         kategori varchar(255),                                                  
+         PRIMARY KEY (id)                                                         
+        );
+     - CREATE TABLE items (                                                            
+         id int NOT NULL AUTO_INCREMENT,                                                
+         description varchar(255),      
+         price int,                                                    
+         stock int,                                                       
+         category_id int,                                              
+         PRIMARY KEY (id),                                                 
+         FOREIGN KEY (category_id) REFERENCES categories(id)                    
+        );
+        
+3. Memasukkan Data pada Table
+     - INSERT INTO users (name, email, password) 
+        VALUES ('John Doe', 'john@doe.com', 'john123'), 
+        ('Jane Doe', 'jane@doe.com', 'jenita123');                                     
+     - INSERT INTO categories (kategori) 
+        VALUES ('gadget'), ('cloth'), ('men'), ('women'), ('branded');                 
+     - INSERT INTO items (name, description, price, stock, category_id) 
+        VALUES ('Sumsang B50', 'HP Keren dari merk Sumsang', 4000000, 100, 1), 
+        ('Uniklooh', 'Baju keren dari brand ternama', 500000, 50, 2), 
+        ('IMHO Watch', 'Jam tangan anak yang jujur banget', 2000000, 20, 1);            
+    
+4. Mengambil Data dari Database
+     - SELECT id, name, email FROM users;                                             
+     - SELECT * FROM items WHERE price > 1000000;                                    
+     - SELECT * FROM items WHERE name LIKE '%uniklo%';                                
+     - SELECT * FROM items INNER JOIN categories ON items.category_id=categories.id; 
+5. Mengubah Data dari Database
+     - UPDATE items SET price = 2500000 WHERE id=1;                                  
